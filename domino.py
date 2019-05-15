@@ -1,59 +1,39 @@
 class Domino:
-        ''' Permet d'instancier des objets simulant les pieces d'un jeu de dominos. '''
+        def __init__(self, f1, f2):
+            #constructeur de la class domino
+            self.f1 = f1
+            self.f2 = f2
 
-        def __init__(self, A, B):
-                ''' Domino, int, int -> Domino
-                Initialise les valeurs des points presents sur les deux faces du domino. '''
-                self.A = A
-                self.B = B
+        #Afficher les deux faces du domino
+        def displayDomino(self):
+            return '|'+str(self.f1)+'|'+str(self.f2)+'|'
 
-        def str(self):
-                ''' Domino -> rien
-                Affiche les points presents sur les deux faces. '''
-                return '['+str(self.A)+' | '+str(self.B)+']'
-
+        #La somme des deux faces du domino
         def valeur(self):
-                ''' Domino -> int
-                Affiche la somme des points presents sur les deux faces. '''
-                return self.A + self.B
+            return (self.f1 + self.f2)
 
-        def estDouble(self):
-                ''' Domino -> bool
-                Teste si un domino est double. '''
-                return self.A == self.B
-        def estVide(self):
-                ''' Domino -> bool
-                Teste si un domino est vide. '''
-                return self.egal(Domino(-1,-1))
-        def peutEtrePlaceApres(self, domino):
-                ''' Domino, Domino -> bool
-                Teste si le domino courant peut etre place apres domino. '''
-                return (self.B == domino.A or self.B == domino.B)
+        #Definir si le domino est un double(a deux faces identiques)
+        def isDouble(self):
+            return (self.f1 == self.f2)
 
-        def permute(self):
-                ''' Domino -> Domino
-                Permet d'inverser les deux faces d'un domino. '''
-                self.A, self.B = self.B, self.A
+        #Tester si le domino est vide
+        def isEmpty(self):
+            return (self.isDouble() and self.f1 == 0)
 
-        def egal(self, domino):
-                ''' Domino, Domino -> bool
-                Teste si deux dominos sont egaux. '''
-                if (self.A == domino.A and self.B == domino.B) or (self.A == domino.B and self.B == domino.A):
-                        return True
-                return False
+        #Comparer si ce dominon est identique un autre domino donnant
+        def isEqual(self, domino):
+            if (self.f1 == domino.f1 and self.f2 == domino.f2) or (self.f1 == domino.f2 and self.f2 == domino.f1):
+                return True
+            return False
 
-        def estPlusGrand(self, dom):
-                '''Domino, Domino -> Bool
-                Teste si un domino est plus grand qu'un autre domino.'''
-                return self.valeur() > dom.valeur()
+        #Tester si le domino courant peut être placer devant un autre domino donnant
+        def canBePlaced(self, domino):
+            return (self.f1 == domino.f2 or self.f2 == domino.f2)
 
-#d1 = Domino(2, 12)
-#d2 = Domino(12, 2)
-#d3 = Domino(3, 4)
-#print(d1.str())
-#d1.permute()
-#print(d1.str())
-#print(d1.egal(d2))
-#print(d1.estPlusGrand(d2))
-#print(d1.estPlusGrand(d3))
 
+d1 = Domino(10, 10)
+d2 = Domino(0, 0)
+
+print(d1.isDouble())
+print(d1.isEqual(d2))
+print(d2.isEmpty())
