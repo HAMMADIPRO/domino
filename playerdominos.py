@@ -1,4 +1,4 @@
-class palerdominos:
+class playerdominos:
 
     #ici le consctructeur de la classe table qui est une pile des dominos 
     def __init__(self):
