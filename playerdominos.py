@@ -1,4 +1,5 @@
-class palyerdominos:
+
+class playerdominos:
 
     #ici le consctructeur de la classe table qui est une pile des dominos 
     def __init__(self):
@@ -6,8 +7,8 @@ class palyerdominos:
         self.dominos=[]
 
     #pour ajouter un élément 
-    def add_element(self,do):
-        self.dominos.append(do)
+    def add_element(self,domino):
+        self.dominos.append(domino)
         self.nbr +=1
 
     #la suppression de l'élément     
@@ -25,6 +26,9 @@ class palyerdominos:
     def top(self):
         assert not self.is_empty()
         return self.dominos[self.nbr-1]
+    #la taille de la liste des dominos    
+    def length(self):
+                return self.nbr
 
 
 
