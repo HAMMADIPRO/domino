@@ -1,5 +1,9 @@
+<<<<<<< HEAD:playerdominos.py
 
 class playerdominos:
+=======
+class DominoSequence:
+>>>>>>> bb4eaf91bcdb81dab15ede183bb6ca0c45240e00:dominoSequence.py
 
     #ici le consctructeur de la classe table qui est une pile des dominos 
     def __init__(self):
