@@ -30,6 +30,9 @@ class Domino:
         def canBePlaced(self, domino):
             return (self.f1 == domino.f2 or self.f2 == domino.f2)
 
+        # permuter les deux faces du domino    
+        def permute(self):
+            self.f1, self.f2 = self.f2, self.f1     
 
 d1 = Domino(10, 10)
 d2 = Domino(0, 0)
