@@ -1,50 +1,41 @@
-from playerdominos import *
 from random import randint
 from domino import *  
 
 
 class player:
     #le constructure pour créer un joueur 
-    def __init__(self, playerNbr,table):
-        self.mydominos = playerdominos()
+    def __init__(self, dominoNbr,table):
+        #self.mydominos = DominoSequence()
         self.stock=[]
-        for i in range(playerNbr):
+        for i in range(dominoNbr):
             self.takeDomino(table)
-           
+    
     
     def takeDomino(self,table):
-        ind = randint(0, len(table)-1)
-        dom=table.pop(ind)        
-        self.stock.append(dom)
+        if len(table)!=0:
+            ind = randint(0, len(table)-1)
+            dom=table.pop(ind)
+            self.stock.append(dom)    
+        
 
     def biggestDoubleDomino(self):
         DominoDouble = Domino(-1, -1)
         for dom in self.stock:
-            if dom.isDouble() and dom.isGratterThen(DominoDouble):
-                DominoDouble=dom
+            if dom.isDouble() and dom.isGratterThan(DominoDouble):
+                DominoDouble = dom
         return DominoDouble
 
-    def bigestDominoTable(self, firstDomino):
-        if self.mydominos.length()!=0:
-            lastdomino=self.mydominos.top()
-        else:
-            lastdomino=firstDomino
-        for dom in self.stock:
-            if dom.A == lastdomino.B:
-                return dom
-            elif dom.B == lastdomino.B:
-                return dom.permute()
-        return Domino(-1, -1)
+    # enlever un domino du stock    
+    def removeDomino(self, domino):
+        for i in range(len(self.stock)):
+            if domino.isEqual(self.stock[i]):
+                return self.stock.pop(i)        
 
-
-
-    # Retourne le nombre de dominos dans la reserve du joueur.
-    def nomberOfDominosStock(self):
-        return len(self.stock)
 
     def stockVlaue(self) :
         v=0
         for dom in self.stock :
-            v=v+dom.valeur()
+            v=v+dom.value()
         return v
         
+

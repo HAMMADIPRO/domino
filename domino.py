@@ -6,10 +6,10 @@ class Domino:
 
         #Afficher les deux faces du domino
         def displayDomino(self):
-            return '|'+str(self.f1)+'|'+str(self.f2)+'|'
+            return '['+str(self.f1)+'|'+str(self.f2)+']'
 
         #La somme des deux faces du domino
-        def valeur(self):
+        def value(self):
             return (self.f1 + self.f2)
 
         #Definir si le domino est un double(a deux faces identiques)
@@ -27,12 +27,30 @@ class Domino:
             return False
 
         #Tester si le domino courant peut être placer devant un autre domino donnant
-        def canBePlaced(self, domino):
-            return (self.f1 == domino.f2 or self.f2 == domino.f2)
+        def canBePlacedRight(self, domino):
+            if self.f1 == domino.f2 :
+                return True
+            elif self.f2 == domino.f2:
+                self.permute()
+                return True
+            return False 
+        def canBePlacedLeft(self, domino):
+            if self.f2 == domino.f1:
+                return True
+            elif self.f1 == domino.f1:
+                self.permute()
+                return True
+            return False
 
         # permuter les deux faces du domino    
         def permute(self):
-            self.f1, self.f2 = self.f2, self.f1     
+            self.f1, self.f2 = self.f2, self.f1
+
+        # Tester si la valeur de ce domino est supérieur à un autre domino    
+        def isGratterThan(self, domino):
+            if self.value() > domino.value():
+                return True
+            return False        
 
 d1 = Domino(10, 10)
 d2 = Domino(0, 0)
